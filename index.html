@@ -1,0 +1,88 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div"></div>
+<script>
+
+const div1 = document.getElementById("div")
+const title = document.createElement('h2')
+
+div1.appendChild(title)
+title.textContent = "Rock Paper Scissors: You vs " + window.navigator.platform
+
+// return random string from three element array
+function computerPlay() {
+   const choice = ["rock", "paper", "scissors"];
+   const random = Math.floor(Math.random() * choice.length); 
+   return choice[random];
+}
+
+
+let x = computerPlay();
+
+// prompt user to pick from three available choices, 
+// if they don't then tell them to try again
+function userPlay() {
+    let userChoice = prompt("Enter rock, paper or scissors");
+    
+    if (userChoice === "Rock" || userChoice === "rock" || userChoice === "ROCK") {
+            return "rock";
+        } else if (userChoice === "Paper" || userChoice === "paper" || userChoice === "PAPER") {
+            return "paper";
+        } else if (userChoice === "Scissors" || userChoice === "scissors" || userChoice === "SCISSORS") {
+            return "scissors";
+        } else {
+            return "Choose rock, paper or scissors" && userPlay();
+        }
+        }
+
+let y = userPlay();
+
+console.log(x, y);
+
+function rpsLogic(x, y) {
+    if (x === 'rock') {
+        if (y === 'scissors') {
+            return "Rock smashes scissors. You lost."
+        } else if (y === 'paper') {
+            return "Paper covers rock. You won!"
+        }
+        return "It's a tie";
+    } else if (x === 'paper') {
+        if (y === 'rock') {
+            return "Paper covers rock. You lost"
+        } else if (y === 'scissors') {
+            return "Scissors cuts paper. You won!";
+        } 
+        return "It's a tie";
+    } else {// (x === 'scissors') {
+        if (y === 'rock') {
+            return "Rock smashes scissors. You won!";
+        } else if (y === 'paper') {
+            return "Scissors cut paper. You lost";
+        }
+        return "It's a tie";
+    }
+    }
+
+const you = document.createElement('p')
+const comp = document.createElement('p')
+const result = document.createElement('h3');
+
+
+title.appendChild(you)
+you.textContent = "You: " + y;
+
+title.appendChild(comp)
+comp.textContent = window.navigator.platform +": " + x;
+
+div1.appendChild(result);
+result.textContent = rpsLogic(x, y);
+
+</script>    
+</body>
+</html>
