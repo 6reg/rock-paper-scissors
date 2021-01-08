@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <p>Rock, Paper, Scissors!</p> 
+   <div id="vs"></div>
+   <br>
+   <div id="btnContainer">
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+   </div>
+   <br>
+   <div id ="winnerText"></div>
+   <script>
+       // get user cpu type and display it along with game instructions
+       const cpuType = document.getElementById("vs");
+       cpuType.innerHTML = "You versus " + window.navigator.platform + ". "  + "Click a button to play"
+
+// get a random play from computer
+const computerPlay = function() {
+    let play = ["rock", "paper", "scissors"];
+    return play[Math.floor(Math.random() * Math.floor(3))]
+}
+
+
+
+// play a single round and return string declaring winner
+function playRound(playerSelection, computerSelection) {
+    if (playerSelection == "rock") {
+        if (computerSelection == "paper") {
+            return "You lose! Paper covers Rock";
+        } else if (computerSelection == "scissors") {
+            return "You win! Rock smashes Scissors"
+        } 
+        return "It's a tie!";
+    } else if (playerSelection == "paper") {
+        if (computerSelection == "rock") {
+                return "You win! Rock covers Paper";
+        } else if (computerSelection == "scissors") {
+                return "You lose! Scissors cuts Paper";
+        }
+            return "It's a tie!";
+    } else if (playerSelection == "scissors") {
+        if (computerSelection == "rock") {
+            return "You lose! Rock smashes Scissors";
+        } else if (computerSelection == "paper") {
+            return "You win! Scissors cuts Paper"
+        }
+        return "It's a tie!";
+   }
+    } 
+
+
+const buttons = document.querySelectorAll('button');
+    // .forEach method to iterate through each button
+buttons.forEach((button) => {
+    // add click listener to each 
+button.addEventListener('click', () => {
+
+    const playerPlay = button.id;
+
+    const winner = playRound(playerPlay, computerPlay())
+    document.getElementById('winnerText').innerHTML = winner
+});
+})
+
+
+   </script>
+</body>
+</html>

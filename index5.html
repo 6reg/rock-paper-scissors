@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+// get body tag, create a div and insert it with title text
+const title = document.querySelector('body')
+const titleDiv = document.createElement('div')
+title.appendChild(titleDiv)
+titleDiv.textContent = "Rock, Paper, Scissors! You vs. " + window.navigator.platform + "."
+
+// put three buttons below the title
+const buttons = document.querySelector('body')
+
+const rockBtn = document.createElement('button')
+const paperBtn = document.createElement('button')
+const scissorsBtn = document.createElement('button');
+
+buttons.appendChild(rockBtn);
+buttons.appendChild(paperBtn);
+buttons.appendChild(scissorsBtn);
+
+rockBtn.textContent = "Rock"
+paperBtn.textContent = "Paper"
+scissorsBtn.textContent = "Scissors"
+
+
+// get a random play from computer
+const computerPlay = function() {
+    let play = ["rock", "paper", "scissors"];
+    return play[Math.floor(Math.random() * Math.floor(3))]
+}
+
+const playerSelection = document.getElementById('button').onclick 
+
+// play a single round and return string declaring winner
+const playRound = function(playerSelection, computerSelection) {
+    if (playerSelection == "rock") {
+        if (computerSelection == "paper") {
+            return "You lose! Paper covers Rock";
+        } else if (computerSelection == "scissors") {
+            return "You win! Rock smashes Scissors"
+        } 
+        return "It's a tie!";
+        } else if (playerSelection == "paper") {
+            if (computerSelection == "rock") {
+                return "You win! Rock covers Paper";
+            } else if (computerSelection == "scissors") {
+                return "You lose! Scissors cuts Paper";
+            }
+            return "It's a tie!";
+        }
+        if (computerSelection == "paper") {
+            return "You win! Scissors cuts Paper";
+        } else if (computerSelection == "rock") {
+            return "You lose! Rock smashes Scissors";
+        }
+        return "It's a tie!";
+        }
+        
+// play 5 rounds then return a string that declares a winner
+// function game()    
+    
+rockBtn.addEventListener('click', playRound)
+
+console.log(playRound())
+
+const declareWinner = document.querySelector('body')
+const declareWinnerText = document.createElement('div')
+declareWinner.appendChild(declareWinnerText)
+declareWinnerText.textContent = playRound()
+
+ 
+</script>
+</body>
+</html>
