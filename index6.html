@@ -19,7 +19,7 @@
    <script>
        // get user cpu type and display it along with game instructions
        const cpuType = document.getElementById("vs");
-       cpuType.innerHTML = "You versus " + window.navigator.platform + ". "  + "Click a button to play"
+       cpuType.innerHTML = "You versus " + window.navigator.platform + ". "  + "First to 5 wins." + " Click a button to play"
 
 // get a random play from computer
 const computerPlay = function() {
@@ -27,28 +27,35 @@ const computerPlay = function() {
     return play[Math.floor(Math.random() * Math.floor(3))]
 }
 
-
+let playerScore = 0;
+let compScore = 0;
 
 // play a single round and return string declaring winner
 function playRound(playerSelection, computerSelection) {
     if (playerSelection == "rock") {
         if (computerSelection == "paper") {
+            compScore++;
             return "You lose! Paper covers Rock";
         } else if (computerSelection == "scissors") {
+            playerScore++;
             return "You win! Rock smashes Scissors"
         } 
         return "It's a tie!";
     } else if (playerSelection == "paper") {
         if (computerSelection == "rock") {
+                playerScore++;
                 return "You win! Rock covers Paper";
         } else if (computerSelection == "scissors") {
+                compScore++;
                 return "You lose! Scissors cuts Paper";
         }
             return "It's a tie!";
     } else if (playerSelection == "scissors") {
         if (computerSelection == "rock") {
+            compScore++;
             return "You lose! Rock smashes Scissors";
         } else if (computerSelection == "paper") {
+            playerScore++;
             return "You win! Scissors cuts Paper"
         }
         return "It's a tie!";
@@ -61,11 +68,16 @@ const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
     // add click listener to each 
 button.addEventListener('click', () => {
-
+    if (compScore < 5 && playerScore < 5) {
     const playerPlay = button.id;
-
-    const winner = playRound(playerPlay, computerPlay())
-    document.getElementById('winnerText').innerHTML = winner
+    const compPlay = computerPlay()
+    const winner = playRound(playerPlay, compPlay)
+    document.getElementById('winnerText').innerHTML = winner + " Computer: " + compScore + " You: " + playerScore;
+    } else {
+        compScore == 5 ?
+        document.getElementById('winnerText').innerHTML = "You lose." + " Computer: " + compScore + " You: " + playerScore :
+        document.getElementById('winnerText').innerHTML = "You win!" + " Computer: " + compScore + " You: " + playerScore;
+    }
 });
 })
 
