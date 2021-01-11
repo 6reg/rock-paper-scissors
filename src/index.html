@@ -1,88 +1,54 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lacquer&family=Roboto&display=swap"
+    />
 </head>
 <body>
-    <div id="div"></div>
-<script>
+    <main id="main-content">
+        <h1 id="title">Man vs Machine</h1>
+        <p class="desc animate" id="desc1">
+            Feeling lucky ?? ...
+        </p>
+        <p class="desc disappear" id="desc2">
+            ..?? ..
 
-const div1 = document.getElementById("div")
-const title = document.createElement('h2')
-
-div1.appendChild(title)
-title.textContent = "Rock Paper Scissors: You vs " + window.navigator.platform
-
-// return random string from three element array
-function computerPlay() {
-   const choice = ["rock", "paper", "scissors"];
-   const random = Math.floor(Math.random() * choice.length); 
-   return choice[random];
-}
-
-
-let x = computerPlay();
-
-// prompt user to pick from three available choices, 
-// if they don't then tell them to try again
-function userPlay() {
-    let userChoice = prompt("Enter rock, paper or scissors");
-    
-    if (userChoice === "Rock" || userChoice === "rock" || userChoice === "ROCK") {
-            return "rock";
-        } else if (userChoice === "Paper" || userChoice === "paper" || userChoice === "PAPER") {
-            return "paper";
-        } else if (userChoice === "Scissors" || userChoice === "scissors" || userChoice === "SCISSORS") {
-            return "scissors";
-        } else {
-            return "Choose rock, paper or scissors" && userPlay();
-        }
-        }
-
-let y = userPlay();
-
-console.log(x, y);
-
-function rpsLogic(x, y) {
-    if (x === 'rock') {
-        if (y === 'scissors') {
-            return "Rock smashes scissors. You lost."
-        } else if (y === 'paper') {
-            return "Paper covers rock. You won!"
-        }
-        return "It's a tie";
-    } else if (x === 'paper') {
-        if (y === 'rock') {
-            return "Paper covers rock. You lost"
-        } else if (y === 'scissors') {
-            return "Scissors cuts paper. You won!";
-        } 
-        return "It's a tie";
-    } else {// (x === 'scissors') {
-        if (y === 'rock') {
-            return "Rock smashes scissors. You won!";
-        } else if (y === 'paper') {
-            return "Scissors cut paper. You lost";
-        }
-        return "It's a tie";
-    }
-    }
-
-const you = document.createElement('p')
-const comp = document.createElement('p')
-const result = document.createElement('h3');
-
-
-title.appendChild(you)
-you.textContent = "You: " + y;
-
-title.appendChild(comp)
-comp.textContent = window.navigator.platform +": " + x;
-
-div1.appendChild(result);
-result.textContent = rpsLogic(x, y);
-
-</script>    
-</body>
+        </p>
+        <p class="desc disappear" id="desc3">
+            Your too deep now,  you have to play.
+        </p>
+        <p id="cta">Make your choice!</p>
+        <div id="game-container">
+            <div id="btn-container">
+                <div id="rock" class="button">
+                    <img src="cave-painting.png" alt="Rock" />
+                </div>
+                <div id="paper" class="button">
+                    <img src="document.png" alt="Paper" />
+                </div>
+                <div id="scissors" class="button">
+                    <img src="scissors-opened-tool-shape.png" alt="Scissors" />
+                </div>
+            </div>
+        <div id="score-label">
+            <p class="label">sapien</p>
+            <p class="label">silicon</p>
+        </div>
+        <div id="score-container">
+            <div id="player-score" class="score">0</div>
+            <div id="computer-score" class="score">0</div>
+        </div>
+        <div id="results-container"></div>
+       </div> 
+      </main>
+      <div id="end-alert" class="disappear">
+          <div id="end-desc"></div>
+          <a id="retry-btn"></a>
+        </div>
+         <script src="app.js"></script>
+    </body>
 </html>
