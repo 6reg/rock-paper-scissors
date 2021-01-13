@@ -216,10 +216,10 @@ function declareWinner() {
   rplContent();
   if (playerScore > computerScore) {
     endDesc.textContent = "You win!(sim#44kkslfff::let.human.win)";
-    returnMainBtn.innerText = "Play again";
+    returnMainBtn.innerText = "re-run sim ?";
   } else {
-    endDesc.textContent = "You lost.";
-    returnMainBtn.innerText = "Play again";
+    endDesc.textContent = "You lost. So did Lee Sedol.";
+    returnMainBtn.innerText = "re-run sim ?"
   }
   fadeIn();
 
